@@ -6,6 +6,7 @@
 #  Date Created:    10/29/2020
 # =============================================================================
 
+import itertools
 
 def CombinationGenerator(a, b, c, d):
     """
@@ -16,8 +17,6 @@ def CombinationGenerator(a, b, c, d):
     values_list = [a, b, c, d]
     operators_list = ['+', '-', '*', '/']
 
-
-    import itertools
     #Generate permutations of 4 numbers
     values_perms = []
     for perm in itertools.permutations(values_list,4):
@@ -29,17 +28,12 @@ def CombinationGenerator(a, b, c, d):
         operators_combs.append(comb)
 
     #Generate orders of values vs operators
-    #Hard coded patterns
-    # RevPol=[
-    #        [v,v,v,v,o,o,o],
-    #        [v,v,v,o,v,o,o],
-    #        [v,v,v,o,o,v,o],
-    #        [v,v,o,v,v,o,o],
-    #        [v,v,o,v,o,v,o]]
-
     full_combinations = []
     for values_row in values_perms:
         for operators_row in operators_combs:
+            # We have exactly 4 operands, so there are limited ways
+            # to arrange them into a valid expression.
+            # Hard-coding the 5 possible orders of operands and operators:
             #[v,v,v,v,o,o,o]
             full_combinations.append(values_row+operators_row)
             #[v,v,v,o,v,o,o]
