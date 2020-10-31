@@ -5,13 +5,12 @@
 #  Author:          numberthreeox
 #  Date Created:    10/26/2020
 # =============================================================================
-
+from CombinationGenerator import *
 
 def Game24Console():
     """
     Starts a console program that takes in user inputs and determines solutions
     for a game of 24.
-    :return:
     """
 
     welcome_message = 'Hello! Welcome to the 24 Solver.'
@@ -31,6 +30,9 @@ def Game24Console():
             c = input('More please! ')
             d = input('Last one! ')
 
+            #TESTING
+
+            CombinationGenerator(a, b, c, d)
             # TODO look for solutions
             # TODO print out Y/N solvability
 
