@@ -54,8 +54,45 @@ class Stack():
         return None
 
 
-def ReversePolishSolver(combinations_list):
+def ReversePolishSolver(expression):
     """
     Solves a given problem in reverse polish notation
-    """
 
+    :param expression - tuple of strings
+    """
+    # Create empty stack
+    rp_calculator = Stack()
+
+    for c in expression:
+        # Check if next part of expression is an operator or a number
+        operator = {'+', '-', '*', '/'}
+
+        if c in operator:
+            if rp_calculator.count < 2:
+                print('Error: Not enough operands')
+            else:
+                # Pop two values
+                right_operand = rp_calculator.pop()
+                left_operand = rp_calculator.pop()
+
+                # Evaluate and push result back to stack
+                if c == '+':
+                    rp_calculator.push(left_operand + right_operand)
+                elif c == '-':
+                    rp_calculator.push(left_operand - right_operand)
+                elif c == '*':
+                    rp_calculator.push(left_operand * right_operand)
+                elif c == '/':
+                    rp_calculator.push(left_operand / right_operand)
+
+        elif c.isnumeric():
+            # Operand: add to stack
+            rp_calculator.push(int(c))
+
+        else:
+            print('Error: invalid character')
+
+    if rp_calculator.count > 1:
+        print('Error: too many operands')
+
+    return rp_calculator.pop()
